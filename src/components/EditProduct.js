@@ -61,22 +61,25 @@ const EditProduct = (props) => {
 	}
 	
 	return (
-		<div> 
+		<div className="[ centered-display ] [ height-min darker-bg text-light ]"> 
 			<h2>EditProduct {id}</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
+			<form onSubmit={handleSubmit} className="padding-16 text-align-left">
+				<div className='input-form'>
 					<label>Name</label>
-					<input type="text" value={prodName} onChange={handleNameChange} placeholder="name" required></input>
+					<input className="push-right border-radius" type="text" value={prodName} onChange={handleNameChange} placeholder="name" required></input>
 				</div>
-				<div>
+				<div className='input-form'>
 					<label>Description</label>
-					<input type="text" value={prodDescription} onChange={handleDescriptionChange} placeholder="Description" required></input>
+					<input className="push-right border-radius" type="text" value={prodDescription} onChange={handleDescriptionChange} placeholder="Description" required></input>
 				</div>
-				<div>
+				<div className='input-form'>
 					<label>Price</label>
-					<input type="text" value={prodPrice} onChange={handlePriceChange} placeholder="price" required></input>
+					<input className="push-right border-radius" type="text" value={prodPrice} onChange={handlePriceChange} placeholder="price" required></input>
 				</div>
-				<input type="submit" value="Edit Product"></input>
+				<div className='centered-display'>
+					<input type="submit" value="Edit Product"></input>
+					<button onClick={() => navigate("/dashboard")}>Go back</button>
+				</div>
 			</form>
 		</div>
 	)

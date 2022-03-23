@@ -43,20 +43,23 @@ const AddProduct = (props) => {
 	return (
 		<div className="[ centered-display ] [ height-min darker-bg text-light ]">
 			<h2>Add Product</h2>
-			<form onSubmit={handleSubmit}>
-				<div>
+			<form onSubmit={handleSubmit} className="padding-16 text-align-left">
+				<div className='input-form'>
 					<label>Name</label>
-					<input type="text" onChange={handleNameChange} placeholder="name" required></input>
+					<input className="push-right border-radius" type="text" onChange={handleNameChange} placeholder="name" required></input>
 				</div>
-				<div>
+				<div className='input-form'>
 					<label>Description</label>
-					<input type="text" onChange={handleDescriptionChange} placeholder="Description" required></input>
+					<input className="push-right border-radius" type="text" onChange={handleDescriptionChange} placeholder="Description" required></input>
 				</div>
-				<div>
+				<div className='input-form'>
 					<label>Price</label>
-					<input type="text" onChange={handlePriceChange} placeholder="price" required></input>
+					<input className="push-right border-radius" type="text" onChange={handlePriceChange} placeholder="price" required></input>
 				</div>
-				<input type="submit" value="Add Product"></input>
+				<div className='centered-display'>
+					<input type="submit" value="Add Product"></input>
+					<button onClick={() => navigate("/dashboard")}>Go back</button>
+				</div>
 			</form>
 		</div>
 	)

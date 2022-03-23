@@ -55,7 +55,7 @@ const Dashboard = (props) => {
 						<p>It seems like you haven't created any products yet</p>	
 					</div>
 					:
-					<div style={styles_CUBE.wrapper}>
+					<div className='centered-display text-light'>
 						<table>
 							<thead>
 								<tr>
@@ -71,6 +71,7 @@ const Dashboard = (props) => {
 				}
 			</div>
 			<input onClick={createNewProduct} type="button" value="Add New Product"></input>
+			<button onClick={() => navigate("/dashboard")}>Logout</button>
 		</div>
 	)
 }
