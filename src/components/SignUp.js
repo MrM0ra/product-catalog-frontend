@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { styles_CUBE } from '../styles/styles';
+import '../styles/styles_css.css';
 
 const SignUp = () => {
 
@@ -29,25 +31,33 @@ const SignUp = () => {
     }
 
   return (
-    <div style={{display: "grid", justifyContent:"center"}}>
-        <div>
-            <h1>SignUp</h1>
-        </div>
-        <div style={{border:1, borderBlock:"black", borderRadius:15}}>
-            <form style={{ display:"grid", placeItems:"baseline", padding:2}}>
-                <label>Nombre</label>
-                <input type="text" onChange={handleUsernameChange} placeholder="nombre"></input>
-                <label>Apellido</label>
-                <input type="text" onChange={handleUserLastNameChange} placeholder="apellido"></input>
-                <label>Documento</label>
-                <input type="text" onChange={handleUserDocumentChange} placeholder="documento"></input>
-                <label>Email</label>
-                <input type="text" onChange={handleUserEmailChange} placeholder="correo"></input>
-                <label>Contraseña</label>
-                <input type="password" onChange={handleUserPasswordChange} placeholder="contraseña"></input>
+    <div style={styles_CUBE.wrapper}>
+        <div style={styles_CUBE.card}>
+            <h2>SignUp</h2>
+            <form style={styles_CUBE.form}>
+                <div className='input-form'>
+                    <label>Nombre</label>
+                    <input style={styles_CUBE.input} type="text" onChange={handleUsernameChange} placeholder="nombre"></input>
+                </div>
+                <div className='input-form'>
+                    <label>Apellido</label>
+                    <input style={styles_CUBE.input} type="text" onChange={handleUserLastNameChange} placeholder="apellido"></input>
+                </div>
+                <div className='input-form'>
+                    <label>Documento</label>
+                    <input style={styles_CUBE.input} type="text" onChange={handleUserDocumentChange} placeholder="documento"></input>
+                </div>
+                <div className='input-form'>
+                    <label>Email</label>
+                    <input style={styles_CUBE.input} type="text" onChange={handleUserEmailChange} placeholder="correo"></input>
+                </div>
+                <div className='input-form'>
+                    <label>Contraseña</label>
+                    <input style={styles_CUBE.input} type="password" onChange={handleUserPasswordChange} placeholder="contraseña"></input>
+                </div>
             </form>
         </div>
-    </div>
+    </div> 
   );
 }
 

@@ -1,30 +1,31 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from '../context/UserContext';
-import { styles } from '../styles/styles';
+import { styles_CUBE } from '../styles/styles';
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = (props) => {	
 
     let navigate = useNavigate();
 
-	const {changeAuth, userEmail, changeUserId} = useContext(UserContext);
+	const {changeAuth, changeUserEmail, userEmail, changeUserId} = useContext(UserContext);
 
 	const [userPwd, setUserPwd] = useState("");
 	const [visibleState, setVisibleState] = useState('hidden');
 
 	const handleLoginWeb = () => {
 		let user = {email: userEmail, password: userPwd};
-		const response = fetch("http://127.0.0.1:8080/user/login",{
+        console.log(user)
+		const response = fetch("http://127.0.0.1:8080/login",{
 			method: "POST",
 			headers:{"Content-Type":"application/json"},
 			body: JSON.stringify(user)
 		})
 		.then(res => res.json())
 		.then((result) => {
-			if(result.error===null) {
+			if(result!=null) {
 				changeUserId(result.userId);
 				changeAuth(true);
-				props.changePage("TopTopics")
+                navigate('/dashboard');
 			} else{
 				setVisibleState("visible");
 			}
@@ -32,7 +33,7 @@ const LoginForm = (props) => {
 	}
 
 	const handleEmailChange = (event) => {
-		props.changeEmail(event.target.value);
+		changeUserEmail(event.target.value);
 	}
 
 	const handlePwdChange = (event) => {
@@ -41,24 +42,24 @@ const LoginForm = (props) => {
 
     const handleSignUp = (event) => {
         event.preventDefault();
-        //props.history.push("/SignUp");
         navigate('/SignUp');
     }
 
 	return (
-		<div style={{paddingTop:"5%"}}>
-			<form style={{display: "grid", placeItems: "center"}}>
-				<hr style={{width:"100%"}}></hr>
-				<p>Log in with your email address</p>
-				<input style={styles.input} placeholder="Email" onChange={handleEmailChange} type="text"></input>
-				<input style={styles.input} placeholder="Password" onChange={handlePwdChange} type="password"></input>
-				<p style={{visibility: visibleState}}>Usuario y/o contraseña invalidos</p>
-			</form>
-			<div style={{display: "grid", placeItems:"center"}}>
-                <button onClick={handleLoginWeb}>Login</button>
-                <button onClick={handleSignUp}>SignUp</button>
-			</div>
-		</div>
+		<div style={styles_CUBE.wrapper}>
+            <div style={styles_CUBE.card}>
+                <h2>Login</h2>
+			    <form style={styles_CUBE.form}>
+				    <input style={styles_CUBE.input} placeholder="Email" onChange={handleEmailChange} type="text" required></input>
+				    <input style={styles_CUBE.input} placeholder="Password" onChange={handlePwdChange} type="password" required></input>
+				    <p style={{visibility: visibleState}}>Usuario y/o contraseña invalidos</p>
+			    </form>
+			    <div style={styles_CUBE.form}>
+                    <button style={styles_CUBE.input} onClick={handleLoginWeb}>Login</button>
+                    <button style={styles_CUBE.input} onClick={handleSignUp}>SignUp</button>
+			    </div>
+		    </div>
+        </div>
 	);
 };
 

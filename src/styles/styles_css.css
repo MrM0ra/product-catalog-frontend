@@ -1,0 +1,23 @@
+:root {
+    --dark: #323432;
+    --light: #C7E5C9;
+    --lightest: #D2F3CE; 
+}
+
+body{ 
+    display: 'grid';
+    min-height: '100vh';
+    place-items: 'center';
+}
+
+.input-form{
+    /*justify-content: center;
+    display: flex;
+    flex-wrap: wrap;*/
+    display: grid;
+    grid-template-columns: repeat(2, 0.7fr);
+}
+
+/* Composition */
+
+/* utility */

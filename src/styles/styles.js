@@ -1,38 +1,25 @@
-export const styles = {
+export const styles_CUBE = {
+    wrapper: {
+        display: 'grid',
+        minHeight: '100vh',
+        placeItems: 'center',
+        backgroundColor: '#333333'
+    },
+    card: {
+        display: 'grid',
+        placeItems: 'center',
+        border: '1px solid',
+        maxWidth: '40rem',
+        borderRadius: '1rem',
+        backgroundColor: '#e9dcdc',
+        padding: 10        
+    },
     form: {
         display: 'grid',
         placeItems: 'center',
-        margin: 10
+        gap: '1em'
     },
-    div: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 10
+    input : {
+        borderRadius: '1rem'
     },
-    box: {
-        width: 400,
-        padding: 40,
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%,-50%)',
-        background: '#151515',
-        textAlign: 'center'
-    },
-    body: {
-        margin: 0,
-        padding: 0,
-        fontFamily: 'sans-serif',
-        background: '#301b3f'
-    },
-    messageBubble: {
-        borderRadius: 5,
-        backgroundColor: 'greenblue',
-        border: '1px solid',
-        display: 'inline-block',
-        margin: 5,
-        width: 'fit-content',
-        padding: 5
-    },
-};
+}
