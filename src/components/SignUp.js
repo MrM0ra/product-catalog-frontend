@@ -47,6 +47,7 @@ const SignUp = (props) => {
 		})
 		.then(res => res.json())
 		.then((result) => {
+            console.log(result ? 'sisas' : 'nonas');
 			if(result!=null) {
 				changeUserId(result.userId);
 				changeAuth(true);
@@ -84,8 +85,8 @@ const SignUp = (props) => {
                     <label>Contraseña</label>
                     <input className="push-right border-radius" type="password" onChange={handleUserPasswordChange} placeholder="contraseña" required></input>
                 </div>
+                <input type="submit" value="SignUp"></input>
             </form>
-            <button onClick={handleSignUp} className="" value="">Signup</button>
             <p style={{visibility: visibleState}}>Email already registered</p>
         </div>
     </div> 
