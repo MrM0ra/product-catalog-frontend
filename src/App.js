@@ -11,9 +11,9 @@ function App() {
     <AuthProvider >
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={AuthProvider.auth ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-                <Route path="/login" element={<LoginForm />}/>
-                <Route path="/signup" element={<SignUp/>}/>
+                <Route path="/" element={localStorage.auth ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+                <Route path="/login" element={localStorage.auth ? <Navigate to="/dashboard" /> : <LoginForm />}/>
+                <Route path="/signup" element={localStorage.auth ? <Navigate to="/dashboard" /> : <SignUp/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
             </Routes>
         </BrowserRouter>

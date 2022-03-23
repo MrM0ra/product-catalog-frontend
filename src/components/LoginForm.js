@@ -25,6 +25,8 @@ const LoginForm = (props) => {
 			if(result!=null) {
 				changeUserId(result.userId);
 				changeAuth(true);
+                localStorage.setItem('auth', true);
+                localStorage.setItem('user', JSON.stringify(result));
                 navigate('/dashboard');
 			} else{
 				setVisibleState("visible");
