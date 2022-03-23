@@ -92,7 +92,7 @@ const AddProduct = (props) => {
 					<label>image 3</label>
 					<input className="push-right border-radius" type="text" onChange={handleImage3Change} placeholder="price" ></input>
 				</div>
-				<div className='centered-display'>
+				<div className='centered-display gap-1'>
 					<input type="submit" value="Add Product"></input>
 					<button onClick={() => navigate("/dashboard")}>Go back</button>
 				</div>
