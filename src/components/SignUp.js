@@ -41,7 +41,7 @@ const SignUp = (props) => {
 		event.preventDefault();
 		const user = {name:userName, lastName: userLastname, document: userDocument, email:userEmail, password:userPassword};
 		console.log(user);
-		const response = fetch("http://127.0.0.1:8080/signup",{
+		fetch("http://127.0.0.1:8080/signup",{
 			method: "POST",
 			headers:{"Content-Type":"application/json"},
 			body: JSON.stringify(user)

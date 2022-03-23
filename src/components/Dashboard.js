@@ -1,12 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react'
-import { UserContext } from '../context/UserContext';
-import { styles_CUBE } from '../styles/styles';
+import React, { useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import '../styles/styles_css.css';
 
 const Dashboard = (props) => {
-
-	const {userId} = useContext(UserContext);
 
 	let navigate = useNavigate();
 
@@ -44,6 +40,11 @@ const Dashboard = (props) => {
 		))
 	}
 
+	const logout = () => {
+		localStorage.clear();
+		navigate("/");
+	}
+
   	return (
 		<div className='[ centered-display ] [ height-min darker-bg text-light ]'>
 			<h2>Dashboard</h2>
@@ -71,7 +72,7 @@ const Dashboard = (props) => {
 				}
 			</div>
 			<input onClick={createNewProduct} type="button" value="Add New Product"></input>
-			<button onClick={() => navigate("/dashboard")}>Logout</button>
+			<button onClick={logout}>Logout</button>
 		</div>
 	)
 }

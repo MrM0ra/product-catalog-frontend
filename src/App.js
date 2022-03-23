@@ -16,9 +16,9 @@ function App() {
                 <Route path="/" element={localStorage.auth ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
                 <Route path="/login" element={localStorage.auth ? <Navigate to="/dashboard" /> : <LoginForm />}/>
                 <Route path="/signup" element={localStorage.auth ? <Navigate to="/dashboard" /> : <SignUp/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-                <Route path="/add-product" element={<AddProduct/>}/>
-                <Route path="/edit-product/:id" element={<EditProduct/>}/>
+                <Route path="/dashboard" element={localStorage.auth ? <Dashboard/> : <LoginForm/> }/>
+                <Route path="/add-product" element={localStorage.auth ? <AddProduct/> : <LoginForm/> }/>
+                <Route path="/edit-product/:id" element={localStorage.auth ? <EditProduct/> : <LoginForm/> }/>
             </Routes>
         </BrowserRouter>
     </AuthProvider>

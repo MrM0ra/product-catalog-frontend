@@ -25,7 +25,7 @@ const AddProduct = (props) => {
 		event.preventDefault();
 		const product = {name:prodName,description:prodDescription,price:prodPrice,userId:JSON.parse(localStorage.getItem('user')).userId}
 		console.log(product);
-		const response = fetch("http://127.0.0.1:8080/product",{
+		fetch("http://127.0.0.1:8080/product",{
 			method: "POST",
 			headers:{"Content-Type":"application/json"},
 			body: JSON.stringify(product)

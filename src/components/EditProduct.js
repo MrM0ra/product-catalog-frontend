@@ -22,7 +22,7 @@ const EditProduct = (props) => {
 					setPrice(result.price);
 				}
 			)
-		},[]);
+		},[id]);
 
 	const handleNameChange = (event) => {
 		setName(event.target.value);
@@ -44,7 +44,7 @@ const EditProduct = (props) => {
 			price: prodPrice,
 			userId: JSON.parse(localStorage.getItem('user')).userId}
 		console.log(product);
-		const response = fetch(`http://127.0.0.1:8080/product/${id}`,{
+		fetch(`http://127.0.0.1:8080/product/${id}`,{
 			method: "PUT",
 			headers:{"Content-Type":"application/json"},
 			body: JSON.stringify(product)
