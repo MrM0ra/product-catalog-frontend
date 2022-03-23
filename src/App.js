@@ -3,26 +3,28 @@ import SignUp from './components/SignUp';
 import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
 import EditProduct from './components/EditProduct';
-import {BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import ViewProduct from './components/ViewProduct';
+import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/UserContext';
 import AddProduct from './components/AddProduct';
 
 function App() {
 
-  return (
-    <AuthProvider >
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={localStorage.auth ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
-                <Route path="/login" element={localStorage.auth ? <Navigate to="/dashboard" /> : <LoginForm />}/>
-                <Route path="/signup" element={localStorage.auth ? <Navigate to="/dashboard" /> : <SignUp/>}/>
-                <Route path="/dashboard" element={localStorage.auth ? <Dashboard/> : <LoginForm/> }/>
-                <Route path="/add-product" element={localStorage.auth ? <AddProduct/> : <LoginForm/> }/>
-                <Route path="/edit-product/:id" element={localStorage.auth ? <EditProduct/> : <LoginForm/> }/>
-            </Routes>
-        </BrowserRouter>
-    </AuthProvider>
-  );
+	return (
+		<AuthProvider >
+			<BrowserRouter basename={window.location.pathname || ''}>
+				<Routes>
+					<Route path="/" element={<LoginForm/>} />
+					<Route path="/login" element={<LoginForm />}/>
+					<Route path="/signup" element={<SignUp/>}/>
+					<Route path="/dashboard" element={<Dashboard/>}/>
+					<Route path="/add-product" element={<AddProduct/>}/>
+					<Route path="/edit-product/:id" element={<EditProduct/>}/>
+					<Route path="/view-product/:id" element={<ViewProduct/>}/>
+				</Routes>
+			</BrowserRouter>
+		</AuthProvider>
+	);
 }
 
 export default App;

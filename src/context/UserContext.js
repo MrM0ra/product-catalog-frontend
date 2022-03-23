@@ -7,7 +7,6 @@ export const AuthProvider = ({children}) => {
 	const [userEmail, setUserEmail] = useState('');
 	const [userId, setUserId] = useState('');
 	const [auth, setAuth] = useState(false);
-	const [editingProduct, setEditingProduct] = useState(0);
 
 	const changeUserName = (args) => {
 		setUserName(args);
@@ -24,15 +23,10 @@ export const AuthProvider = ({children}) => {
 	const changeAuth = (args) => {
 		setAuth(args);
 	};
-	
-	const changeEditingProduct = (args) => {
-		setEditingProduct(args);
-	}
 
 	return (
 		<UserContext.Provider value={{auth, changeAuth, userId, 
-		changeUserId, userName, changeUserName, userEmail, changeUserEmail,
-		editingProduct, changeEditingProduct}}>
+		changeUserId, userName, changeUserName, userEmail, changeUserEmail}}>
 			{children}
 		</UserContext.Provider>
 	);

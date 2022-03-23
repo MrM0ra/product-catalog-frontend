@@ -1,47 +1,62 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { useNavigate } from "react-router-dom";
+import { UserContext } from '../context/UserContext';
 import '../styles/styles_css.css';
 
 const Dashboard = (props) => {
 
 	let navigate = useNavigate();
 
+    const {changeAuth, changeUserEmail, changeUserId, userId} = useContext(UserContext);
+
 	const [products, setProducts] = useState([]);
 
 	useEffect( () => {
-		fetch(`http://127.0.0.1:8080/product/user/${JSON.parse(localStorage.getItem('user')).userId}`)
+		fetch(`http://127.0.0.1:8080/product/user/${userId}`)
 		.then(res => res.json())
 		.then((result) => {
 			setProducts(result);
 		}
-		)},[]);
+		)},[userId]);
 
 	const createNewProduct = (event) => {
 		event.preventDefault();
 		navigate('/add-product')
 	}
 
-	const editPass = (event) => {
-		navigate(`/edit-product/${+event.target.innerHTML}`);
+	const viewPass = (event) => {
+		navigate(`/view-product/${+event.target.innerHTML}`);
 	}
+
+    const editPass = (event) => {
+        let prodId = event.target.parentElement.parentElement.previousSibling.previousSibling.parentElement.firstChild.firstChild.firstChild.innerHTML;
+        navigate(`/edit-product/${+prodId}`);
+    }
 	
 	const renderProducts = () => {
 		return products.map(prod => (
 			<tr key={prod.productId}>
-				<td>
-					<p onClick={editPass}>
+				<td className='padding-16'>
+					<p onClick={viewPass}>
 						<u>{prod.productId}</u>
 					</p>
 				</td>
-				<td>
+				<td className='padding-16'>
 					{prod.description}
 				</td>
+                <td className='padding-16'>
+                    <p onClick={editPass}>
+						<u>edit</u>
+					</p>
+                </td>
 			</tr>
 		))
 	}
 
 	const logout = () => {
-		localStorage.clear();
+        changeAuth(false);
+        changeUserEmail('');
+        changeUserId(0)
 		navigate("/");
 	}
 

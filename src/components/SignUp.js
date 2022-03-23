@@ -52,8 +52,6 @@ const SignUp = (props) => {
 			if(result!=null || !result.empty) {
 				changeUserId(result.userId);
 				changeAuth(true);
-				localStorage.setItem('auth', true);
-				localStorage.setItem('user', JSON.stringify(result));
 				navigate('/dashboard');
 			} else{
 				setVisibleState("visible");

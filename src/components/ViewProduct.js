@@ -2,7 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-const EditProduct = (props) => {
+const ViewProduct = (props) => {
 
 	let { id } = useParams();
 
@@ -87,31 +87,31 @@ const EditProduct = (props) => {
 	
 	return (
 		<div className="[ centered-display ] [ height-min darker-bg text-light ]"> 
-			<h2>Edit Product {id}</h2>
+			<h2>View Product {id}</h2>
 			<form onSubmit={handleSubmit} className="centered-display padding-16 gap-1 text-align-left">
 				<div className='input-form'>
 					<label>Name</label>
-					<input className="push-right border-radius" type="text" value={prodName} onChange={handleNameChange} placeholder="name" required></input>
+					<input className="push-right border-radius" type="text" value={prodName} onChange={handleNameChange} placeholder="name" readOnly></input>
 				</div>
 				<div className='input-form'>
 					<label>Description</label>
-					<input className="push-right border-radius" type="text" value={prodDescription} onChange={handleDescriptionChange} placeholder="Description" required></input>
+					<input className="push-right border-radius" type="text" value={prodDescription} onChange={handleDescriptionChange} placeholder="Description" readOnly></input>
 				</div>
 				<div className='input-form'>
 					<label>Price</label>
-					<input className="push-right border-radius" type="text" value={prodPrice} onChange={handlePriceChange} placeholder="price" required></input>
+					<input className="push-right border-radius" type="text" value={prodPrice} onChange={handlePriceChange} placeholder="price" readOnly></input>
 				</div>
                 <div className='input-form'>
 					<label>image 1</label>
-					<input className="push-right border-radius" type="text" value={image1} onChange={handleImage1Change} placeholder="image url" ></input>
+					<input className="push-right border-radius" type="text" value={image1} onChange={handleImage1Change} placeholder="image url" readOnly></input>
 				</div>
                 <div className='input-form'>
 					<label>image 2</label>
-					<input className="push-right border-radius" type="text" value={image2} onChange={handleImage2Change} placeholder="image url" ></input>
+					<input className="push-right border-radius" type="text" value={image2} onChange={handleImage2Change} placeholder="image url" readOnly></input>
 				</div>
                 <div className='input-form'>
 					<label>image 3</label>
-					<input className="push-right border-radius" type="text" value={image3} onChange={handleImage3Change} placeholder="image url" ></input>
+					<input className="push-right border-radius" type="text" value={image3} onChange={handleImage3Change} placeholder="image url" readOnly></input>
 				</div>
 				<div className='centered-display gap-1'>
 					<input type="submit" value="Edit Product"></input>
@@ -122,4 +122,4 @@ const EditProduct = (props) => {
 	)
 }
 
-export default EditProduct;
+export default ViewProduct;

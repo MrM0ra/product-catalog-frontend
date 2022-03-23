@@ -15,7 +15,7 @@ const LoginForm = (props) => {
 	const handleLoginWeb = () => {
 		let user = {email: userEmail, password: userPwd};
         console.log(user)
-		const response = fetch("http://127.0.0.1:8080/login",{
+		fetch("http://127.0.0.1:8080/login",{
 			method: "POST",
 			headers:{"Content-Type":"application/json"},
 			body: JSON.stringify(user)
@@ -25,8 +25,6 @@ const LoginForm = (props) => {
 			if(result!=null) {
 				changeUserId(result.userId);
 				changeAuth(true);
-                localStorage.setItem('auth', true);
-                localStorage.setItem('user', JSON.stringify(result));
                 navigate('/dashboard');
 			} else{
 				setVisibleState("visible");
