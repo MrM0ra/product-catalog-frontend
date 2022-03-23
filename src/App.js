@@ -2,6 +2,7 @@ import './App.css';
 import SignUp from './components/SignUp';
 import LoginForm from './components/LoginForm';
 import Dashboard from './components/Dashboard';
+import EditProduct from './components/EditProduct';
 import {BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/UserContext';
 import AddProduct from './components/AddProduct';
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/signup" element={localStorage.auth ? <Navigate to="/dashboard" /> : <SignUp/>}/>
                 <Route path="/dashboard" element={<Dashboard/>}/>
                 <Route path="/add-product" element={<AddProduct/>}/>
+                <Route path="/edit-product/:id" element={<EditProduct/>}/>
             </Routes>
         </BrowserRouter>
     </AuthProvider>

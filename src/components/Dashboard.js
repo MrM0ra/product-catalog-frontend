@@ -24,12 +24,16 @@ const Dashboard = (props) => {
 		event.preventDefault();
 		navigate('/add-product')
 	}
+
+	const editPass = (event) => {
+		navigate(`/edit-product/${+event.target.innerHTML}`);
+	}
 	
 	const renderProducts = () => {
 		return products.map(prod => (
 			<tr key={prod.productId}>
 				<td>
-					<p>
+					<p onClick={editPass}>
 						<u>{prod.productId}</u>
 					</p>
 				</td>

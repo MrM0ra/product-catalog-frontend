@@ -49,7 +49,7 @@ const SignUp = (props) => {
 		.then(res => res.json())
 		.then((result) => {
 			console.log(result ? 'sisas' : 'nonas');
-			if(result!=null) {
+			if(result!=null || !result.empty) {
 				changeUserId(result.userId);
 				changeAuth(true);
 				localStorage.setItem('auth', true);
