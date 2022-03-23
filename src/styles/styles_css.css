@@ -1,7 +1,18 @@
 :root {
     --dark: #323432;
     --light: #C7E5C9;
-    --lightest: #D2F3CE; 
+    --lightest: #D2F3CE;
+
+    --space-1: 1rem;
+    --space-2: 1.25rem;
+    --space-3: 1.5rem;
+    --space-4: 1.75rem;
+    --space-5: 2rem;
+    --space-6: 2.25rem;
+    --space-7: 2.5rem;
+    --space-8: 2.75rem;
+    --space-9: 3rem;
+    
 }
 
 body{ 
@@ -12,7 +23,7 @@ body{
 
 .input-form{
     display: grid;
-    grid-template-columns: repeat(2, 0.7fr);
+    grid-template-columns: repeat(2, .8fr);
 }
 
 /* Composition */
@@ -40,4 +51,32 @@ body{
 
 .text-light {
     color: var(--light);
+}
+
+.padding-16 {
+    padding: var(--space-1);
+}
+
+.padding-24{
+    padding: var(--space-3);
+}
+
+.padding-48{
+    padding: var(--space-9);
+}
+
+.text-align-left {
+    text-align: start;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-right {
+    text-align: end;
+}
+
+.push-right {
+    margin-left: auto;
 }

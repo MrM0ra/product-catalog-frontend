@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import { UserContext } from '../context/UserContext';
 import { styles_CUBE } from '../styles/styles';
+import { useNavigate } from "react-router-dom";
 import '../styles/styles_css.css';
 
-const SignUp = () => {
+const SignUp = (props) => {
 
-    const [username, setUsername] = useState('');
+    let navigate = useNavigate();
+
+    const {changeAuth, changeUserEmail, userEmail, changeUserId} = useContext(UserContext);
+
+    const [userName, setUsername] = useState('');
     const [userLastname, setuserLastname] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [document, setDocument] = useState('');
+    const [userPassword, setPassword] = useState('');
+    const [userDocument, setDocument] = useState('');
+    
+	const [visibleState, setVisibleState] = useState('hidden');
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -19,7 +26,7 @@ const SignUp = () => {
     }
 
     const handleUserEmailChange = (event) => {
-        setEmail(event.target.value);
+        changeUserEmail(event.target.value);
     }
 
     const handleUserDocumentChange = (event) => {
@@ -30,32 +37,56 @@ const SignUp = () => {
         setPassword(event.target.value);
     }
 
+    const handleSignUp = (event) => {
+        event.preventDefault();
+        const user = {name:userName, lastName: userLastname, document: userDocument, email:userEmail, password:userPassword};
+        const response = fetch("http://127.0.0.1:8080/signup",{
+			method: "POST",
+			headers:{"Content-Type":"application/json"},
+			body: JSON.stringify(user)
+		})
+		.then(res => res.json())
+		.then((result) => {
+			if(result!=null) {
+				changeUserId(result.userId);
+				changeAuth(true);
+                localStorage.setItem('auth', true);
+                localStorage.setItem('user', JSON.stringify(result));
+                navigate('/dashboard');
+			} else{
+				setVisibleState("visible");
+			}
+		});
+    } 
+
   return (
     <div style={styles_CUBE.wrapper}>
         <div style={styles_CUBE.card}>
             <h2>SignUp</h2>
-            <form style={styles_CUBE.form}>
+            <form className="padding-16 text-align-left" style={styles_CUBE.form}>
                 <div className='input-form'>
                     <label>Nombre</label>
-                    <input style={styles_CUBE.input} type="text" onChange={handleUsernameChange} placeholder="nombre"></input>
+                    <input className="push-right border-radius" type="text" onChange={handleUsernameChange} placeholder="nombre" required></input>
                 </div>
                 <div className='input-form'>
                     <label>Apellido</label>
-                    <input style={styles_CUBE.input} type="text" onChange={handleUserLastNameChange} placeholder="apellido"></input>
+                    <input className="push-right border-radius" type="text" onChange={handleUserLastNameChange} placeholder="apellido" required></input>
                 </div>
                 <div className='input-form'>
                     <label>Documento</label>
-                    <input style={styles_CUBE.input} type="text" onChange={handleUserDocumentChange} placeholder="documento"></input>
+                    <input className="push-right border-radius" type="text" onChange={handleUserDocumentChange} placeholder="documento" required></input>
                 </div>
                 <div className='input-form'>
                     <label>Email</label>
-                    <input style={styles_CUBE.input} type="text" onChange={handleUserEmailChange} placeholder="correo"></input>
+                    <input className="push-right border-radius" type="text" onChange={handleUserEmailChange} placeholder="correo" required></input>
                 </div>
                 <div className='input-form'>
                     <label>Contraseña</label>
-                    <input style={styles_CUBE.input} type="password" onChange={handleUserPasswordChange} placeholder="contraseña"></input>
+                    <input className="push-right border-radius" type="password" onChange={handleUserPasswordChange} placeholder="contraseña" required></input>
                 </div>
             </form>
+            <button onClick={handleSignUp} className="" value="">Signup</button>
+            <p style={{visibility: visibleState}}>Email already registered</p>
         </div>
     </div> 
   );
