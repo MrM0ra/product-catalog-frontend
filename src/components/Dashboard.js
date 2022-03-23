@@ -1,9 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { UserContext } from '../context/UserContext';
+import { styles_CUBE } from '../styles/styles';
+import { useNavigate } from "react-router-dom";
+import '../styles/styles_css.css';
 
 const Dashboard = (props) => {
 
     const {userId} = useContext(UserContext);
+
+    let navigate = useNavigate();
 
     const [products, setProducts] = useState([]);
 
@@ -15,19 +20,25 @@ const Dashboard = (props) => {
 		}
 		)},[]);
 
+    const createNewProduct = (event) => {
+        event.preventDefault();
+        navigate('/add-product')
+    }
+    
+
   return (
-    <div>
+    <div className='[ centered-display ] [ height-min darker-bg text-light ]'>
         <h2>Dashboard</h2>
         <div>
             {
                 products.length<=0  ? 
-                <div>
+                <div className='centered-display text-light'>
 				    <img src="https://cdn.iconscout.com/icon/free/png-256/data-not-found-1965034-1662569.png" alt=""></img>
 				    <p>It seems like you haven't created any products yet</p>
-				    <input onClick={() => props.changePage("AddTopic")} type="button" value="Add New Topic"></input>
+				    <input onClick={createNewProduct} type="button" value="Add New Product"></input>
 			    </div>
                 :
-                <div>
+                <div style={styles_CUBE.wrapper}>
                     productos creados por el Usuario
                 </div>
             }

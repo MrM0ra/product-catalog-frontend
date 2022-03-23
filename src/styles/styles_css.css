@@ -11,13 +11,33 @@ body{
 }
 
 .input-form{
-    /*justify-content: center;
-    display: flex;
-    flex-wrap: wrap;*/
     display: grid;
     grid-template-columns: repeat(2, 0.7fr);
 }
 
 /* Composition */
+.centered-display {
+    display: grid;
+    place-items: center;
+}
 
 /* utility */
+.height-min {
+    min-height: 100vh;
+}
+
+.gap-1 {
+    gap: 1em;
+}
+
+.border-radius {
+    border-radius: 1rem;
+}
+
+.darker-bg {
+    background-color: var(--dark);
+}
+
+.text-light {
+    color: var(--light);
+}
